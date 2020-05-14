@@ -13,7 +13,15 @@
   export let negara
 </script>
 
-<h1>{negara}</h1>
+<svelte:head>
+  <title>{negara}</title>
+</svelte:head>
+
+<div class="section header">
+  <div class="container">
+    <h1>Untuk negeri {negara}</h1>
+  </div>
+</div>
 
 <CovidStat />
 
