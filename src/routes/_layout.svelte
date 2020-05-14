@@ -5,3 +5,5 @@
 </script>
 
 <Nav {segment} />
+
+<slot />
