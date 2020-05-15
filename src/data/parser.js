@@ -24,9 +24,61 @@ function statNegeri(negeri, data) {
   return parseStat(datanegeri)
 }
 
+function statHarian(data) {
+  return [
+    {
+      label: 'Kes',
+      key: 'positive',
+      color: 'rgb(100,0,200',
+    },
+    {
+      label: 'Sembuh',
+      key: 'recovered',
+      color: 'rgb(100,100,200',
+    },
+    {
+      label: 'Jumlah diuji',
+      key: 'totalTestResults',
+      color: 'rgb(10,30,100',
+    },
+    {
+      label: 'Dalam hospital',
+      key: 'hospitalizedCurrently',
+      color: 'rgb(20,100,230',
+    },
+    {
+      label: 'Mati',
+      key: 'death',
+      color: 'rgb(255,99,132',
+    },
+  ].reduce((prev, next) => {
+    if (data.filter((d) => d[next.key] !== null).length > 4) {
+      prev.push(parseCarta(data, next.key, next.label, next.color))
+    }
+    return prev
+  }, [])
+}
+
+function parseCarta(data, key, label, kaler) {
+  const datacarta = data.map((d) => {
+    return {
+      x: moment(d.date, 'YYYYMMDD'),
+      y: d[key] || 0,
+    }
+  })
+
+  return {
+    label: label,
+    data: datacarta,
+    fill: false,
+    borderColor: kaler,
+  }
+}
+
 export default {
   statistik: parseUsStat,
   statNegeri: statNegeri,
+  statHarian: statHarian,
 }
 
 /**

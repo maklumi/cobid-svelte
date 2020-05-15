@@ -10,7 +10,7 @@
     }
     try {
       const statnegeri = await permintaan.statNegeri(negeri)
-      console.log(JSON.stringify(statnegeri))
+      // console.log(JSON.stringify(statnegeri))
 
       return { negara: page.params['negeri'], statnegeri }
     } catch (error) {}
