@@ -1,14 +1,19 @@
 <script context="module">
   import namanegeri from '../data/namaNegeri'
+  import permintaan from '../data/mohon'
 
   export async function preload(page) {
-    // console.log(JSON.stringify(page))
     const negeri = page.params['negeri']
     if (namanegeri.find((it) => it.abbrev === negeri) === undefined) {
       this.error(404, 'negeri tak jumpai')
       return
     }
-    return { negara: page.params['negeri'] }
+    try {
+      const statnegeri = await permintaan.statNegeri(negeri)
+      console.log(JSON.stringify(statnegeri))
+
+      return { negara: page.params['negeri'], statnegeri }
+    } catch (error) {}
   }
 </script>
 
@@ -18,6 +23,7 @@
   import TableContainer from '../components/TableContainer.svelte'
 
   export let negara
+  export let statnegeri
 </script>
 
 <svelte:head>
@@ -30,6 +36,6 @@
   </div>
 </div>
 
-<CovidStat />
+<CovidStat {...statnegeri} />
 
 <Carta />

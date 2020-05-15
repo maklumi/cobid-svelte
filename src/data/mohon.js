@@ -9,4 +9,11 @@ async function stats() {
   return parser.statistik(balasan.data)
 }
 
-export default { stats }
+async function statNegeri(negeri) {
+  const terima = await axios(
+    'https://covidtracking.com/api/v1/states/current.json',
+  )
+  return parser.statNegeri(negeri, terima.data)
+}
+
+export default { stats, statNegeri }

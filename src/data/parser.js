@@ -1,23 +1,32 @@
 import format from './format'
 import moment from 'moment'
 
-function parseStat(data) {
+function parseUsStat(data) {
   const [usStatRaw] = data
+  return parseStat(usStatRaw)
+}
 
+function parseStat(raw) {
   return {
-    kes: format.nombor(usStatRaw.positive),
-    mati: format.nombor(usStatRaw.death),
-    sembuh: format.nombor(usStatRaw.recovered),
-    ventilator: format.nombor(usStatRaw.onVentilatorCurrently),
-    hospitalised: format.nombor(usStatRaw.hospitalized),
-    icu: format.nombor(usStatRaw.inIcuCurrently),
-    diuji: format.nombor(usStatRaw.totalTestResults),
-    updated: moment(usStatRaw.lastModified).format('LLLL'),
+    kes: format.nombor(raw.positive),
+    mati: format.nombor(raw.death),
+    sembuh: format.nombor(raw.recovered),
+    ventilator: format.nombor(raw.onVentilatorCurrently),
+    hospitalised: format.nombor(raw.hospitalized),
+    icu: format.nombor(raw.inIcuCurrently),
+    diuji: format.nombor(raw.totalTestResults),
+    updated: moment(raw.lastModified).format('LLLL'),
   }
 }
 
+function statNegeri(negeri, data) {
+  const datanegeri = data.find((it) => it.state === negeri)
+  return parseStat(datanegeri)
+}
+
 export default {
-  statistik: parseStat,
+  statistik: parseUsStat,
+  statNegeri: statNegeri,
 }
 
 /**
