@@ -1,6 +1,13 @@
 <script context="module">
+  import namanegeri from '../data/namaNegeri'
+
   export async function preload(page) {
-    console.log(JSON.stringify(page))
+    // console.log(JSON.stringify(page))
+    const negeri = page.params['negeri']
+    if (namanegeri.find((it) => it.abbrev === negeri) === undefined) {
+      this.error(404, 'negeri tak jumpai')
+      return
+    }
     return { negara: page.params['negeri'] }
   }
 </script>
