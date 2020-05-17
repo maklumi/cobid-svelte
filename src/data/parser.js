@@ -29,30 +29,30 @@ function statHarian(data) {
     {
       label: 'Kes',
       key: 'positive',
-      color: 'rgb(100,0,200',
+      color: 'rgb(100,0,200)',
     },
     {
       label: 'Sembuh',
       key: 'recovered',
-      color: 'rgb(100,100,200',
+      color: 'rgb(100,100,200)',
     },
     {
       label: 'Jumlah diuji',
       key: 'totalTestResults',
-      color: 'rgb(10,30,100',
+      color: 'rgb(10,30,100)',
     },
     {
       label: 'Dalam hospital',
       key: 'hospitalizedCurrently',
-      color: 'rgb(20,100,230',
+      color: 'rgb(20,100,230)',
     },
     {
       label: 'Mati',
       key: 'death',
-      color: 'rgb(255,99,132',
+      color: 'rgb(255,99,132)',
     },
   ].reduce((prev, next) => {
-    if (data.filter((d) => d[next.key] !== null).length > 4) {
+    if (data.filter((d) => d[next.key]).length > 4) {
       prev.push(parseCarta(data, next.key, next.label, next.color))
     }
     return prev

@@ -37,6 +37,6 @@
 
 <CovidStat {...usstats} />
 
-<Carta />
+<Carta datalepas={sejarah} tajuk="Covid di US" />
 
 <TableContainer />
