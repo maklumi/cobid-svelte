@@ -10,9 +10,9 @@
     }
     try {
       const statnegeri = await permintaan.statNegeri(negeri)
-      // console.log(JSON.stringify(statnegeri))
+      const sejarahnegeri = await permintaan.sejarahNegeri(negeri)
 
-      return { negara: page.params['negeri'], statnegeri }
+      return { negara: page.params['negeri'], statnegeri, sejarahnegeri }
     } catch (error) {}
   }
 </script>
@@ -24,6 +24,7 @@
 
   export let negara
   export let statnegeri
+  export let sejarahnegeri
 </script>
 
 <svelte:head>
@@ -38,4 +39,4 @@
 
 <CovidStat {...statnegeri} />
 
-<Carta />
+<Carta datalepas={sejarahnegeri} tajuk="Covid di {negara}" />

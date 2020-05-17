@@ -75,10 +75,16 @@ function parseCarta(data, key, label, kaler) {
   }
 }
 
+function sejarahHarianNegeri(negeri, datanegeri) {
+  const data = datanegeri.filter((d) => d.state === negeri)
+  return statHarian(data)
+}
+
 export default {
   statistik: parseUsStat,
   statNegeri: statNegeri,
   statHarian: statHarian,
+  sejarahHarianNegeri,
 }
 
 /**
