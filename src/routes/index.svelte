@@ -5,8 +5,9 @@
     try {
       const usstats = await permohonan.stats()
       const sejarah = await permohonan.sejarahHarian()
-      // console.log(JSON.stringify(sejarah))
-      return { usstats, sejarah }
+      const datanegeri = await permohonan.dataNegeriNegeri()
+      console.log(JSON.stringify(datanegeri, 'oooo'))
+      return { usstats, sejarah, datanegeri }
     } catch (error) {
       console.log(error)
     }
@@ -20,6 +21,7 @@
 
   export let usstats
   export let sejarah
+  export let datanegeri
 
   console.log(usstats, 'usstats')
   console.log(sejarah, 'sejarah')

@@ -1,5 +1,6 @@
 import format from './format'
 import moment from 'moment'
+import namanegeri from './namaNegeri'
 
 function parseUsStat(data) {
   const [usStatRaw] = data
@@ -80,11 +81,24 @@ function sejarahHarianNegeri(negeri, datanegeri) {
   return statHarian(data)
 }
 
+function tableNegeri(data) {
+  return data.map((d) => {
+    const { name } = namanegeri.find((it) => it.abbrev === d.state)
+    return {
+      kes: format.nombor(d.positive),
+      mati: format.nombor(d.death),
+      diuji: format.nombor(d.totalTestResults),
+      negeri: d.state,
+      namapenuh: name,
+    }
+  })
+}
 export default {
   statistik: parseUsStat,
   statNegeri: statNegeri,
   statHarian: statHarian,
   sejarahHarianNegeri,
+  tableNegeri,
 }
 
 /**

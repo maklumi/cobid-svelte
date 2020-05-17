@@ -28,4 +28,16 @@ async function sejarahNegeri(negeri) {
   return parser.sejarahHarianNegeri(negeri, respon.data)
 }
 
-export default { stats, statNegeri, sejarahHarian, sejarahNegeri }
+async function dataNegeriNegeri() {
+  const respon = await axios.get(
+    'https://covidtracking.com/api/v1/states/current.json',
+  )
+  return parser.tableNegeri(respon.data)
+}
+export default {
+  stats,
+  statNegeri,
+  sejarahHarian,
+  sejarahNegeri,
+  dataNegeriNegeri,
+}
