@@ -41,4 +41,4 @@
 
 <Carta datalepas={sejarah} tajuk="Covid di US" />
 
-<TableContainer />
+<TableContainer data={datanegeri} />
